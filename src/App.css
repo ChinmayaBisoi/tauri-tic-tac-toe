@@ -1,116 +1,164 @@
-.logo.vite:hover {
-  filter: drop-shadow(0 0 2em #747bff);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafb);
-}
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 1.5;
   font-weight: 400;
-
   color: #0f0f0f;
-  background-color: #f6f6f6;
-
+  background-color: #f0f2f5;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
 }
 
-.container {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
   margin: 0;
-  padding-top: 10vh;
+  min-height: 100vh;
+}
+
+.game {
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+  max-width: 22rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  text-align: center;
+  align-items: center;
+  gap: 1.25rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: 0.75s;
+.game-title {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
-.logo.tauri:hover {
-  filter: drop-shadow(0 0 2em #24c8db);
-}
-
-.row {
-  display: flex;
-  justify-content: center;
-}
-
-a {
+.game-status {
+  margin: 0;
+  min-height: 1.5rem;
+  font-size: 1.05rem;
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  color: #3d3d3d;
 }
 
-a:hover {
-  color: #535bf2;
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 5rem);
+  grid-template-rows: repeat(3, 5rem);
+  gap: 4px;
+  padding: 6px;
+  background: #1a1a1a;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-h1 {
-  text-align: center;
-}
-
-input,
-button {
+.cell {
+  margin: 0;
+  padding: 0;
+  border: none;
   border-radius: 8px;
+  font-size: 2.25rem;
+  font-weight: 700;
+  font-family: inherit;
+  line-height: 1;
+  color: #0f0f0f;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.cell:hover:not(:disabled) {
+  background: #f5f7fa;
+}
+
+.cell:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.cell:disabled {
+  cursor: default;
+}
+
+.cell-x {
+  color: #2563eb;
+}
+
+.cell-o {
+  color: #dc2626;
+}
+
+.reset {
+  margin-top: 0.25rem;
+  padding: 0.65em 1.4em;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  border-radius: 8px;
+  font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
   color: #0f0f0f;
-  background-color: #ffffff;
-  transition: border-color 0.25s;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-}
-
-button {
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   cursor: pointer;
+  transition: border-color 0.2s, background 0.15s;
 }
 
-button:hover {
+.reset:hover {
   border-color: #396cd8;
-}
-button:active {
-  border-color: #396cd8;
-  background-color: #e8e8e8;
+  background: #fafafa;
 }
 
-input,
-button {
-  outline: none;
-}
-
-#greet-input {
-  margin-right: 5px;
+.reset:active {
+  background: #e8e8e8;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    color: #f6f6f6;
-    background-color: #2f2f2f;
+    color: #f0f0f0;
+    background-color: #1c1c1e;
   }
 
-  a:hover {
-    color: #24c8db;
+  .game-status {
+    color: #a1a1a6;
   }
 
-  input,
-  button {
-    color: #ffffff;
-    background-color: #0f0f0f98;
+  .board {
+    background: #000;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
   }
-  button:active {
-    background-color: #0f0f0f69;
+
+  .cell {
+    color: #f5f5f7;
+    background: #2c2c2e;
+  }
+
+  .cell:hover:not(:disabled) {
+    background: #3a3a3c;
+  }
+
+  .cell-x {
+    color: #60a5fa;
+  }
+
+  .cell-o {
+    color: #f87171;
+  }
+
+  .reset {
+    color: #f0f0f0;
+    background: #2c2c2e;
+  }
+
+  .reset:hover {
+    background: #3a3a3c;
+  }
+
+  .reset:active {
+    background: #48484a;
   }
 }
