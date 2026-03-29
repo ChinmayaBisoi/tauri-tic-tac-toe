@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@custom-variant dark (@media (prefers-color-scheme: dark));
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply m-0 min-h-screen antialiased text-neutral-900 bg-[#f0f2f5] dark:bg-[#1c1c1e] dark:text-neutral-100;
+  }
+}
